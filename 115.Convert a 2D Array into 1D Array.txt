@@ -1,0 +1,347 @@
+This is a C# Program to convert a 2D array into 1D array.
+
+Problem Description
+This C# Program Converts a 2D Array into 1D Array.
+
+Problem Solution
+Here the elements of the 2-Dimensional matrix are obtained from the user and are then converted and displayed as a 1-Dimensional array.
+
+Program/Source Code
+Here is source code of the C# Program to Convert a 2D Array into 1D Array. The C# program is successfully compiled and executed with Microsoft Visual Studio. The program output is also shown below.
+
+/*
+ * C# Program to Convert a 2D Array into 1D Array
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+ 
+namespace Program
+{
+    class twodmatrix
+    {
+        int m, n;
+        int[,] a;
+        int[] b;
+        twodmatrix(int x, int y)
+        {
+            m = x;
+            n = y;
+            a = new int[m, n];
+            b = new int[m * n];
+        }
+        public void readmatrix()
+        {
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.WriteLine("a[{0},{1}]=", i, j);
+                    a[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+        }
+        public void printd()
+        {
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write("{0}\t", a[i, j]);
+ 
+                }
+                Console.Write("\n");
+            }
+        }
+        public void convert()
+        {
+            int k = 0;
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    b[k++] = a[i, j];
+                }
+            }
+        }
+        public void printoned()
+        {
+            for (int i = 0; i < m * n; i++)
+            {
+                Console.WriteLine("{0}\t", b[i]);
+            }
+        }
+ 
+ 
+        public static void Main(string[] args)
+        {
+            twodmatrix obj = new twodmatrix(2,3);
+            Console.WriteLine("Enter the Elements : ");
+            obj.readmatrix();
+            Console.WriteLine("\t\t Given 2-D Array(Matrix) is : ");
+            obj.printd();
+            obj.convert();
+            Console.WriteLine("\t\t Converted 1-D Array is : ");
+            obj.printoned();
+            Console.ReadLine();
+        }
+    }
+}
+Program Explanation
+In this C# Program, we are reading the elements of the 2-Dimensional matrix. Using for loop assign the value of ‘a[i,j]’ variable to b[] array variable. Increment the value of base index ‘k’ variable. Print the value of one dimensional array.
+
+
+
+
+Runtime Test Cases
+ 
+Enter the Elements :
+a[0,0]=3
+a[0,1]=7
+a[0,2]=1
+a[1,0]=9
+a[1,1]=34
+a[1,2]=23
+Given 2-D Array(Matrix) is :
+1  4  3
+7  3  8
+Converted 1-D Array is :
+1
+4
+3
+7
+3
+8
+
+=======================
+
+WinForm =>
+
+	namespace Test
+	{
+		public partial class Form1 : Form
+		{
+			int m, n;
+			int[,] a;
+			int[] b;
+
+
+			public Form1()
+			{
+				InitializeComponent();
+			}
+
+			private void button1_Click(object sender, EventArgs e)
+			{
+				
+			}
+
+			private void Form1_Load(object sender, EventArgs e)
+			{
+				m = 2;
+				n = 3;
+				a = new int[m, n];
+				b = new int[m * n];
+
+				ReadMatrix();
+				Print2D();
+				ConvertTo1D();
+				Print1D();
+			}
+			
+
+			private void ReadMatrix()
+			{
+				for (int i = 0; i < m; i++)
+				{
+					for (int j = 0; j < n; j++)
+					{
+						string input = Microsoft.VisualBasic.Interaction.InputBox(
+							string.Format("a[{0},{1}]=", i, j), "Enter Matrix Element", "");
+						a[i, j] = Convert.ToInt32(input);
+					}
+				}
+			}
+
+			private void Print2D()
+			{
+				string output = "";
+				for (int i = 0; i < m; i++)
+				{
+					for (int j = 0; j < n; j++)
+					{
+						output += string.Format("{0}\t", a[i, j]);
+					}
+					output += "\n";
+				}
+				MessageBox.Show("Given 2-D Array(Matrix) is:\n" + output, "2D Array");
+			}
+
+			private void ConvertTo1D()
+			{
+				int k = 0;
+				for (int i = 0; i < m; i++)
+				{
+					for (int j = 0; j < n; j++)
+					{
+						b[k++] = a[i, j];
+					}
+				}
+			}
+
+			private void Print1D()
+			{
+				string output = "";
+				for (int i = 0; i < m * n; i++)
+				{
+					output += string.Format("{0}\t", b[i]);
+				}
+				MessageBox.Show("Converted 1-D Array is:\n" + output, "1D Array");
+			}
+
+		}
+	}
+	
+======================================ASP.NET Core MVC 
+
+
+
+TwoDMatrix.cs => 
+
+	namespace WebApplication1.BL
+	{
+		public class TwoDMatrix
+		{
+			public int m=0, n=0;
+			public int[,] a;
+			public int[] b;
+			public TwoDMatrix(int x, int y)
+			{
+				m = x;
+				n = y;
+				a = new int[m, n];
+				b = new int[m * n];
+			}
+
+			public void Convert()
+			{
+				int k = 0;
+				for (int i = 0; i < m; i++)
+				{
+					for (int j = 0; j < n; j++)
+					{
+						b[k++] = a[i, j];
+					}
+				}
+			}
+
+		}
+	}
+
+===
+
+	using Microsoft.AspNetCore.Mvc;
+	using WebApplication1.BL;
+
+	namespace WebApplication1.Controllers
+	{
+		public class TwoDMatrixController : Controller
+		{
+			TwoDMatrix matrix = new TwoDMatrix(2, 3);
+			
+			public IActionResult Index()
+			{
+				ViewBag.Matrix = matrix;
+				return View();
+			}
+
+			[HttpPost]
+			public IActionResult ConvertMatrix(IFormCollection form)
+			{
+				// Create an instance of the TwoDMatrix class, passing in the dimensions of the matrix as arguments
+				
+
+				// Initialize the 2D matrix using the form values
+				for (int i = 0; i < matrix.m; i++)
+				{
+					for (int j = 0; j < matrix.n; j++)
+					{
+						matrix.a[i, j] = Convert.ToInt32(form["matrix[" + i + "][" + j + "]"]);
+					}
+				}
+				ViewBag.MatrixOutput = matrix;
+				
+				matrix.Convert();
+
+				// Pass the 1D array to the view using a ViewBag object
+				ViewBag.ConvertedMatrix = matrix.b;
+
+				return View();
+			}
+		}
+	}
+
+===
+
+Index.cshtml => 
+
+	@if (ViewBag.Matrix != null)
+	{
+		<form method="post" asp-action="ConvertMatrix">
+			@for (int i = 0; i < ViewBag.Matrix.m; i++)
+			{
+				for (int j = 0; j < ViewBag.Matrix.n; j++)
+				{
+					<input type="text" name="matrix[@i][@j]" />
+				}
+			}
+			<input type="submit" value="Convert" />
+		</form>
+	}
+
+===
+
+ConvertMatrix.cshtml => 
+
+
+	<h1>2D Array is</h1>
+
+	@if (ViewBag.MatrixOutput != null)
+	{
+		<table>
+
+			@for (int i = 0; i < ViewBag.MatrixOutput.m; i++)
+			{
+				<tr>
+					@for (int j = 0; j < ViewBag.MatrixOutput.n; j++)
+					{
+						<td>@ViewBag.MatrixOutput.a[i,j]</td>
+					}
+				</tr>
+			}
+
+		</table>
+	}
+
+	<br/>
+
+
+	<h1>Converted 1D Array is</h1>
+	@if (ViewBag.ConvertedMatrix !=null)
+	{
+	<table>
+		<tr>
+			@foreach (int value in ViewBag.ConvertedMatrix)
+			{
+				<td>@value</td>
+			}
+		</tr>
+	</table>
+	}
+
+_Layout.cshtml => 
+
+	<a class="nav-link text-dark" asp-area="" asp-controller="TwoDMatrix" asp-action="Index">ConvertMatrix</a>
+	
+	
